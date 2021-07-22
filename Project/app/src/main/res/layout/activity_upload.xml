@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:id="@+id/uploadPage"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".UploadActivity">
+
+
+    <TextView
+        android:id="@+id/videoPath"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:maxLines="3"
+        android:layout_margin="20dp"
+        />
+    <Button
+        android:id="@+id/btn_video"
+        android:layout_width="100dp"
+        android:layout_height="48dp"
+        android:layout_below="@id/videoPath"
+        android:text="选择视频"
+        android:layout_gravity="center"
+        android:layout_centerHorizontal="true"
+        />
+    <TextView
+        android:id="@+id/imagePath"
+        android:layout_width="match_parent"
+        android:layout_below="@id/btn_video"
+        android:maxLines="3"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        />
+    <Button
+        android:id="@+id/btn_cover"
+        android:layout_width="100dp"
+        android:layout_height="48dp"
+        android:layout_below="@id/imagePath"
+        android:layout_centerHorizontal="true"
+        android:text="选择封面"
+        android:layout_gravity="center"
+        />
+    <ImageView
+        android:id="@+id/imgPre"
+        android:layout_width="200dp"
+        android:layout_height="300dp"
+        android:layout_marginTop="20dp"
+        android:layout_below="@id/btn_cover"
+        />
+    <VideoView
+        android:id="@+id/videoPre"
+        android:layout_width="200dp"
+        android:layout_height="300dp"
+        android:layout_marginTop="20dp"
+        android:layout_toRightOf="@id/imgPre"
+        android:layout_below="@id/btn_cover"
+        />
+
+    <Button
+        android:id="@+id/btn_submit"
+        android:layout_width="200dp"
+        android:layout_height="80dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="20dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="60dp"
+        android:text="提交"
+        android:textSize="30sp" />
+</RelativeLayout>
