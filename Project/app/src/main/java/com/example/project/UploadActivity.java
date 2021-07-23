@@ -212,9 +212,8 @@ public class UploadActivity extends AppCompatActivity {
 //                "image",
 //                "cover.png",
 //                RequestBody.create(MediaType.parse("multipart/form-data"), coverImageData));
-
         MultipartBody.Part coverImage = MultipartBody.Part.createFormData(
-                "image",
+                "cover_image",
                 "cover.png",
                 RequestBody.create(MediaType.parse("multipart/form-data"), coverImageData));
         MultipartBody.Part video = MultipartBody.Part.createFormData(
@@ -243,6 +242,19 @@ public class UploadActivity extends AppCompatActivity {
                 t.printStackTrace();
             }
         });
+    }
+
+    private String getImagePath(Uri uri, String selection) {
+        String path = null;
+        Cursor cursor = getContentResolver().query(uri, null, selection, null, null);
+        if (cursor != null) {
+            if (cursor.moveToFirst()) {
+                path = cursor.getString(cursor.getColumnIndex(MediaStore.Images.Media.DATA));
+            }
+
+            cursor.close();
+        }
+        return path;
     }
 
     private byte[] readDataFromUri(Uri uri) {
