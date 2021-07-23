@@ -41,9 +41,12 @@ import java.io.Serializable;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+import java.util.TimeZone;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "TAG";
@@ -56,6 +59,8 @@ public class MainActivity extends AppCompatActivity {
 
     private static final int REQUEST_CODE_ADD = 1002;
 
+    Date date;
+
     protected final Handler handler = new Handler(){
         @Override
         public void handleMessage(android.os.Message msg){
@@ -63,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
                 case 1:
                     View v1 = findViewById(R.id.loadday);
                     //夜间模式
-                    if(getCurrentTime().getHours()>18 || getCurrentTime().getHours() < 6){
+                    if(date.getHours()>18 || date.getHours() < 6){
                         v1 = findViewById(R.id.load);
                     }
                     RelativeLayout v2 = findViewById(R.id.MainPage);
@@ -109,6 +114,7 @@ public class MainActivity extends AppCompatActivity {
 //        return loading;//consume
 //    }
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -118,16 +124,16 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-        Time curtime = getCurrentTime();
+        TimeZone.setDefault(TimeZone.getTimeZone("GMT+8"));
+        date = calendar.getTime();
         //夜间模式
         View v = findViewById(R.id.loadday);
-        if(curtime.getHours()>18 || curtime.getHours() < 6){
+        if(date.getHours()>18 || date.getHours() < 6){
             findViewById(R.id.Main).setBackgroundColor(Color.BLACK);
             v.setAlpha(0);
             v = findViewById(R.id.load);
             v.setAlpha(1);
         }
-
 //        recyclerView = findViewById(R.id.rv_list);
 //        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
 //        recyclerView.setLayoutManager(layoutManager);

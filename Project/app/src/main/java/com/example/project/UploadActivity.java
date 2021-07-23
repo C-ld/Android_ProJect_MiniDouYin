@@ -40,7 +40,9 @@ import java.io.InputStream;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+import java.util.TimeZone;
 
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
@@ -70,6 +72,8 @@ public class UploadActivity extends AppCompatActivity {
     private ImageView imagepreview;
     private Calendar calendar = Calendar.getInstance();
 
+    Date date;
+
     private Retrofit retrofit = new Retrofit.Builder()
             .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
@@ -86,8 +90,10 @@ public class UploadActivity extends AppCompatActivity {
         videopreview = findViewById(R.id.videoPre);
         imagepreview = findViewById(R.id.imgPre);
         Time curtime = getCurrentTime();
+        TimeZone.setDefault(TimeZone.getTimeZone("GMT+8"));
+        date = calendar.getTime();
         //夜间模式
-        if(curtime.getHours()>18 || curtime.getHours() < 6){
+        if(date.getHours()>18 || date.getHours() < 6){
             findViewById(R.id.uploadPage).setBackgroundColor(Color.BLACK);
             imagPath.setTextColor(Color.WHITE);
             videoPath.setTextColor(Color.WHITE);
